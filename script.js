@@ -1,3 +1,4 @@
+
 // these values are set at the beginning
 // and then used throughout the game
 let gameState = {
@@ -15,8 +16,8 @@ function changePlayer() {
         let playerTwoHealth = document.getElementById("playerTwoHealth");
         // conversts the innerHTML from string to a number and stores it in a variable
         let playerTwoHealthNum = Number(playerTwoHealth.innerHTML);
-        // reduces by 10
-        playerTwoHealthNum -= 10;
+        // reduces by 5
+        playerTwoHealthNum -= 5;
         // resets the HTML to the new value
         playerTwoHealth.innerHTML = playerTwoHealthNum;
 
@@ -35,6 +36,31 @@ function changePlayer() {
             let playerName = document.getElementById("playerName");
             playerName.innerHTML = `Player ${gameState.whoseTurn}`;
         }
+    }
+    // if the current player is player 2 at the end of a move
+    if (gameState.whoseTurn === 2) {
+        let playerOneHealth = document.getElementById("playerOneHealth");
+         // converts the innerHTML from string to a number and stores it in a variable
+         let playerOneHealthNum = Number(playerOneHealth.innerHTML);
+         // reduces by 5
+         playerOneHealthNum -= 5;
+         // resets the HTML to the new value
+         playerOneHealth.innerHTML = playerOneHealthNum;
+ 
+         // checks if the player has reached 0 health
+         if (playerOneHealthNum <= 0) {
+             // ensures health does not dig into the negative
+             playerOneHealth = 0;
+             // ends the game
+             gameOver();
+         }
+         else {
+             // switch to the next player and change the UI's display / behavior
+             gameState.whoseTurn = 1;
+ 
+             // grabs the 'playerName' element and changes the player's turn display
+             let playerName = document.getElementById("playerName");
+             playerName.innerHTML = `Player ${gameState.whoseTurn}`;
     }
 }
 
