@@ -96,6 +96,21 @@ function attackPlayerTwo() {
         playerOneAttackButton.classList.add("active");
         playerOneAttackButton.classList.remove("inactive");
     }
+function attackPlayerOne() {
+        // function that switches the player 1 attack button to inactive
+        // and player 1 attack button becomes active
+        // button becomes DISABLED 
+    function changeButtonStatus() {
+        let playerOneAttackButton = document.getElementById("playerOneAttack");
+        playerOneAttackButton.disabled = true;
+        playerOneAttackButton.classList.add("inactive");
+        playerOneAttackButton.classList.remove("active");
+    
+        let playerTwoAttackButton = document.getElementById("playerOneAttack");
+        playerTwoAttackButton.disabled = false;
+        playerTwoAttackButton.classList.add("active");
+        playerTwoAttackButton.classList.remove("inactive");
+        }
 
     // commpartmentalized function that changes the player 1's sprite using the array
     // containing multiple images
