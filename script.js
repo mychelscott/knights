@@ -169,6 +169,102 @@ function attackPlayerOne() {
         changeButtonStatus();
         changePlayer();
     }
+ let playerOneFrames = [
+            "./images/R_Idle.png",
+            "./images/R_Attack.png"
+        ];
+
+        let playerSprite = document.getElementById("playerOneSprite");
+        // function we will call in setTimeout, before the frames change back
+        // the idle stance
+        // in other words, we set to the attack sprite, wait 3 seconds,
+        // then set it back to the idle sprite
+        playerSprite.src = playerOneFrames[1];
+        
+        // removes the 'idle' class from the player sprite
+        playerSprite.classList.remove("idle");
+        // adds the 'attack' class to the player sprite
+        // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+        playerSprite.classList.add("attack");
+
+        // grabs the enemy sprite
+        let enemySprite = document.getElementById("playerTwoSprite");
+        let enemyDamage = document.getElementById("SFX_PlayerDamage");
+        // removes the 'idle' class from the enemy sprite
+        enemySprite.classList.remove("idle");
+        // adds the 'attack' class to the enemy sprite
+        // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+        enemySprite.classList.add("damage");
+        // sound that plays when enemy takes damage
+        enemyDamage.play("audio/SFX_PlayerDamage.wav");
+
+        // the function we will call in the setTimeOut method below
+        // after 350 milliseconds
+        // this function will execute this block of code
+        function changePlayerOneSprite() {
+            enemySprite.classList.remove("damage");
+            enemySprite.classList.add("idle");
+
+            playerSprite.src = playerOneFrames[0];
+            playerSprite.classList.remove("attack");
+            playerSprite.classList.add("idle");
+        }
+
+        setTimeout(changePlayerOneSprite, 350);
+
+    // for easy reading,
+    // we do not include ALL of the above code within this condition
+    // instead, we create higher-order functions to keep the code neat and readable
+    if (gameState.whoseTurn === 1) {
+        animatePlayer();
+        changeButtonStatus();
+        changePlayer();
+    }
+    }
+    let playerTwoFrames = [
+        "./images/L_Idle.png",
+        "./images/L_Attack.png"
+    ];
+
+    let playerSprite = document.getElementById("playerTwoSprite");
+    playerSprite.src = playerTwoFrames[1];
+    
+    // removes the 'idle' class from the player sprite
+    playerSprite.classList.remove("idle");
+    // adds the 'attack' class to the player sprite
+    // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+    playerSprite.classList.add("attack");
+
+    // grabs the enemy sprite
+    let enemySprite = document.getElementById("playerOneSprite");
+    let enemyDamage = document.getElementById("SFX_PlayerDamage");
+    // removes the 'idle' class from the enemy sprite
+    enemySprite.classList.remove("idle");
+    // adds the 'attack' class to the enemy sprite
+    // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+    enemySprite.classList.add("damage");
+    // sound that plays when enemy takes damage
+    enemyDamage.play("audio/SFX_PlayerDamage.wav");
+
+    // the function we will call in the setTimeOut method below
+    // after 350 milliseconds
+    // this function will execute this block of code
+    function changePlayerTwoSprite() {
+        enemySprite.classList.remove("damage");
+        enemySprite.classList.add("idle");
+
+        playerSprite.src = playerTwoFrames[0];
+        playerSprite.classList.remove("attack");
+        playerSprite.classList.add("idle");
+    }
+
+    setTimeout(changePlayerTwoSprite, 350);
+}
+    if (gameState.whoseTurn === 2) {
+        animatePlayer();
+        changeButtonStatus();
+        changePlayer();
+    }
 }
 
 function attackPlayerOne() {
